@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#0C0C12">
+<meta name="theme-color" content="#050505">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,37 +13,44 @@
 <title>JJB Academy – Apprends le Jiu-Jitsu Brésilien</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 /* ═══════════════════════════════════════════
-   TOKENS INITIALS D'ORIGINE CONSERVÉS
+   TOKENS — REDESIGN "FAIXA PRETA"
+   Palette : noir mat + blanc craie, deux accents
+   empruntés à la ceinture noire elle-même —
+   le rouge de la barre de grade et l'or du fil
+   de broderie. Le noir et le blanc dominent ;
+   la couleur ne sert qu'à signaler.
 ═══════════════════════════════════════════ */
 :root {
-  --bg:          #0C0C12;
-  --surface:     #13131D;
-  --card:        #1C1C2A;
-  --card-hover:  #222234;
-  --border:      #2C2C42;
-  --border-soft: #232336;
-  --red:         #F03A3A;
-  --red-light:   #FF5C5C;
-  --red-dim:     rgba(240,58,58,.18);
-  --red-glow:    rgba(240,58,58,.28);
-  --gold:        #F5A623;
-  --gold-dim:    rgba(245,166,35,.15);
-  --cyan:        #22D3EE;
-  --cyan-dim:    rgba(34,211,238,.12);
-  --text:        #FFFFFF;
-  --text-2:      #94A3B8;
-  --text-3:      #475569;
-  --font-d:      'Bebas Neue', sans-serif;
+  --bg:          #050505;
+  --surface:     #0C0C0D;
+  --card:        #121213;
+  --card-hover:  #19191B;
+  --border:      #2A2A2D;
+  --border-soft: #1C1C1F;
+  --red:         #C81E3A;
+  --red-light:   #E23A56;
+  --red-dim:     rgba(200,30,58,.16);
+  --red-glow:    rgba(200,30,58,.30);
+  --gold:        #BE9B4E;
+  --gold-light:  #D8BA72;
+  --gold-dim:    rgba(190,155,78,.16);
+  --cyan:        #5B8CA6;
+  --cyan-dim:    rgba(91,140,166,.14);
+  --text:        #F3F2ED;
+  --text-2:      #9A9A9C;
+  --text-3:      #545456;
+  --font-d:      'Anton', 'Bebas Neue', sans-serif;
   --font-b:      'Inter', sans-serif;
+  --font-m:      'Space Mono', monospace;
 
-  /* Échelle de rayons */
-  --r-xs:        8px;
-  --r-sm:        12px;
-  --r:           16px;
-  --r-lg:        22px;
+  /* Échelle de rayons — arêtes plus nettes, esprit "ceinture" */
+  --r-xs:        4px;
+  --r-sm:        6px;
+  --r:           10px;
+  --r-lg:        14px;
 
   /* Échelle d'espacement (base 4px) */
   --sp-1:  4px;
@@ -56,10 +63,10 @@
   --sp-10: 40px;
   --sp-12: 48px;
 
-  /* Élévation */
-  --shadow-sm:  0 2px 8px rgba(0,0,0,.25);
-  --shadow-md:  0 12px 28px rgba(0,0,0,.40);
-  --shadow-lg:  0 20px 48px rgba(0,0,0,.50);
+  /* Élévation — plate et graphique, pas de glow diffus */
+  --shadow-sm:  0 1px 0 rgba(0,0,0,.5);
+  --shadow-md:  0 8px 24px rgba(0,0,0,.55);
+  --shadow-lg:  0 24px 60px rgba(0,0,0,.65);
 
   --transition:    .22s cubic-bezier(.4,0,.2,1);
   --transition-lg: .4s cubic-bezier(.16,1,.3,1);
@@ -82,18 +89,19 @@ body {
 }
 
 input, textarea { -webkit-user-select: text; user-select: text; }
+h1, h2, h3, h4, h5, h6 { font-weight: 400; }
 
-/* Ambient Effects */
+/* Ambient Effects — grain discret plutôt que halos colorés */
 .ambient { pointer-events: none; position: fixed; inset: 0; z-index: 0; }
 .amb-1 {
   position: absolute; top: -300px; left: 50%; transform: translateX(-50%);
-  width: 1000px; height: 600px;
-  background: radial-gradient(ellipse at center, rgba(240,58,58,0.08) 0%, transparent 70%);
+  width: 1100px; height: 620px;
+  background: radial-gradient(ellipse at center, rgba(200,30,58,0.06) 0%, transparent 72%);
 }
 .amb-2 {
   position: absolute; bottom: -260px; right: -120px;
   width: 700px; height: 700px;
-  background: radial-gradient(ellipse at center, rgba(34,211,238,0.05) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(190,155,78,0.04) 0%, transparent 70%);
 }
 
 #app { position: relative; z-index: 1; max-width: 100%; }
@@ -115,15 +123,20 @@ input, textarea { -webkit-user-select: text; user-select: text; }
   align-items: center; justify-content: center;
   text-align: center; padding: var(--sp-10) var(--sp-6);
 }
-.splash-brand {
-  font-family: var(--font-d); font-size: clamp(48px, 12vw, 72px); letter-spacing: 2px; line-height: .9;
-  margin-bottom: var(--sp-3); background: linear-gradient(180deg, #FFF 30%, #94A3B8 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+.brand-lockup { display: flex; flex-direction: column; align-items: center; margin-bottom: var(--sp-8); }
+.brand-mark {
+  font-family: var(--font-d); font-weight: 400; font-size: clamp(64px, 20vw, 110px); letter-spacing: -3px;
+  line-height: .82; color: var(--text); text-transform: uppercase;
 }
-.splash-brand span { color: var(--red); -webkit-text-fill-color: initial; }
+.brand-word {
+  font-family: var(--font-b); font-weight: 700; font-size: clamp(14px, 3.4vw, 19px);
+  letter-spacing: 9px; text-indent: 9px; color: var(--text); text-transform: uppercase; margin-top: var(--sp-2);
+}
+.brand-rule { width: 150px; max-width: 60%; height: 1px; background: var(--gold); margin: var(--sp-4) 0 var(--sp-5); }
+.brand-belt { width: 220px; max-width: 68%; height: auto; display: block; }
 .splash-tagline {
   font-size: 14px; font-weight: 500; color: var(--text-2);
-  letter-spacing: 4px; text-transform: uppercase; margin-bottom: var(--sp-12);
+  letter-spacing: 4px; text-transform: uppercase; margin-top: var(--sp-8); margin-bottom: var(--sp-10);
 }
 .splash-actions { width: 100%; max-width: 320px; }
 
@@ -147,8 +160,8 @@ input, textarea { -webkit-user-select: text; user-select: text; }
 ═══════════════════════════════════════════ */
 #onboarding { flex-direction: column; min-height: 100vh; align-items: center; justify-content: flex-start; }
 .ob-topbar { width: 100%; max-width: 500px; padding: var(--sp-6); display: flex; align-items: center; justify-content: space-between; }
-.ob-logo { font-family: var(--font-d); font-size: 28px; letter-spacing: 1px; color: #fff; }
-.ob-logo-dot { color: var(--red); }
+.ob-logo { font-family: var(--font-d); font-weight: 400; font-size: 26px; letter-spacing: -.5px; color: #fff; display: flex; align-items: baseline; gap: 8px; }
+.ob-logo-dot { font-family: var(--font-b); font-weight: 700; font-size: 11px; letter-spacing: 3px; color: var(--text-2); }
 .ob-progress { display: flex; align-items: center; gap: var(--sp-2); }
 .ob-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-3); transition: var(--transition); }
 .ob-dot.done { background: var(--red); }
@@ -251,8 +264,8 @@ input, textarea { -webkit-user-select: text; user-select: text; }
   position: sticky; top: 0; z-index: 100; background: rgba(12,12,18,.85); backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-soft); padding: 0 var(--sp-6); height: 72px; display: flex; align-items: center; justify-content: space-between;
 }
-.db-brand { font-family: var(--font-d); font-size: 32px; letter-spacing: 1px; color: #fff; }
-.db-brand span { color: var(--red); }
+.db-brand { font-family: var(--font-d); font-weight: 400; font-size: 28px; letter-spacing: -.5px; color: #fff; display: flex; align-items: baseline; gap: 8px; }
+.db-brand span { font-family: var(--font-b); font-weight: 700; font-size: 11px; letter-spacing: 3px; color: var(--text-2); }
 .db-avatar {
   width: 40px; height: 40px; border-radius: 50%; background: var(--card); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--text-2); cursor: pointer;
@@ -323,13 +336,28 @@ input, textarea { -webkit-user-select: text; user-select: text; }
 .metric-info p { font-size: 12px; color: var(--text-2); }
 .metric-value { font-family: var(--font-d); font-size: 24px; color: var(--red); }
 
-.sec-title { font-family: var(--font-d); font-size: 26px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: var(--sp-5); }
+.sec-title { font-family: var(--font-d); font-weight: 400; font-size: 26px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: var(--sp-5); }
 .modules-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--sp-4); }
 .mod-card {
   background: var(--card); border: 1px solid var(--border-soft); border-radius: var(--r);
-  padding: var(--sp-6); cursor: pointer; transition: var(--transition-lg); border-bottom: 3px solid transparent;
+  padding: var(--sp-6); cursor: pointer; transition: var(--transition-lg);
+  position: relative; overflow: hidden;
 }
-.mod-card:hover { transform: translateY(-4px); border-bottom-color: var(--red); border-color: var(--border); box-shadow: var(--shadow-md); background: var(--card-hover); }
+.mod-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--text-3); opacity: .5; transition: var(--transition);
+}
+.mod-card:hover { transform: translateY(-4px); border-color: var(--border); box-shadow: var(--shadow-md); background: var(--card-hover); }
+.mod-card:hover::before { opacity: 1; background: var(--red); }
+/* Bande de ceinture : la couleur encode la famille de technique, comme un grade sur une faixa */
+.tech-card[data-cat="soumissions"]::before { background: var(--red); opacity: .85; }
+.tech-card[data-cat="balayages"]::before { background: var(--gold); opacity: .85; }
+.tech-card[data-cat="gardes"]::before { background: var(--cyan); opacity: .85; }
+.tech-card[data-cat="echappes"]::before { background: var(--text-2); opacity: .7; }
+.tech-card[data-cat="leg_locks"]::before { background: var(--red-light); opacity: .85; }
+.tech-card[data-cat="dos"]::before { background: var(--gold-light); opacity: .85; }
+.tech-card[data-cat="enchainements"]::before { background: linear-gradient(90deg, var(--red) 0%, var(--gold) 100%); opacity: .9; }
+.tech-card:hover::before { opacity: 1 !important; }
 .mod-icon { font-size: 32px; margin-bottom: var(--sp-4); width: 48px; height: 48px; background: var(--surface); border-radius: var(--r-xs); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
 .mod-card:hover .mod-icon { background: var(--red-dim); }
 .mod-name { font-size: 16px; font-weight: 700; margin-bottom: var(--sp-2); }
@@ -374,12 +402,15 @@ input, textarea { -webkit-user-select: text; user-select: text; }
 .tech-filter.active { background: var(--red-dim); border-color: var(--red); color: var(--red); }
 
 .tech-level {
-  display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
-  padding: var(--sp-1) var(--sp-3); border-radius: var(--r-xs); margin-top: var(--sp-3);
+  display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+  padding: var(--sp-1) var(--sp-3) var(--sp-1) var(--sp-2); border-radius: var(--r-xs); margin-top: var(--sp-3); border: 1px solid transparent;
 }
-.tech-level.deb { background: rgba(34,211,238,.15); color: var(--cyan); }
-.tech-level.int { background: var(--gold-dim); color: var(--gold); }
-.tech-level.adv { background: var(--red-dim); color: var(--red); }
+.tech-level.deb { background: var(--cyan-dim); color: var(--cyan); border-color: rgba(91,140,166,.3); }
+.tech-level.deb::before { content: "▮"; margin-right: 1px; }
+.tech-level.int { background: var(--gold-dim); color: var(--gold); border-color: rgba(190,155,78,.3); }
+.tech-level.int::before { content: "▮▮"; letter-spacing: 1px; margin-right: 1px; }
+.tech-level.adv { background: var(--red-dim); color: var(--red-light); border-color: rgba(200,30,58,.35); }
+.tech-level.adv::before { content: "▮▮▮"; letter-spacing: 1px; margin-right: 1px; }
 
 .mod-card.tech-card { display: flex; flex-direction: column; }
 .mod-card.tech-card .mod-cat { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: var(--sp-2); }
@@ -491,7 +522,20 @@ input, textarea { -webkit-user-select: text; user-select: text; }
 
   <section id="splash" class="screen active">
     <div style="margin: auto 0;">
-      <h1 class="splash-brand">JJB <span>ACADEMY</span></h1>
+      <div class="brand-lockup">
+        <div class="brand-mark">JJB</div>
+        <div class="brand-word">Academy</div>
+        <div class="brand-rule"></div>
+        <svg class="brand-belt" viewBox="0 0 320 62" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="20" width="308" height="22" rx="3" fill="#131315" stroke="#242426" stroke-width="1"/>
+          <line x1="10" y1="24" x2="310" y2="24" stroke="#242426" stroke-width="1"/>
+          <line x1="10" y1="38" x2="310" y2="38" stroke="#242426" stroke-width="1"/>
+          <rect x="138" y="12" width="44" height="38" rx="5" fill="#1A1A1C" stroke="#242426" stroke-width="1"/>
+          <rect x="252" y="20" width="46" height="22" fill="#C81E3A"/>
+          <rect x="248" y="20" width="4" height="22" fill="#F3F2ED"/>
+          <rect x="298" y="20" width="4" height="22" fill="#F3F2ED"/>
+        </svg>
+      </div>
       <p class="splash-tagline">Apprends, drille, progresse sur le tatami</p>
     </div>
     <div class="splash-actions">
@@ -1706,469 +1750,469 @@ const schemas = {
   garde_fermee: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
       <rect width="400" height="220" fill="none"/>
-      <ellipse cx="200" cy="190" rx="180" ry="14" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="190" rx="180" ry="14" fill="#121213"/>
       <!-- Adversaire (debout, à genoux) -->
-      <rect x="170" y="60" width="60" height="90" rx="14" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="200" cy="45" r="22" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="200" y="180" text-anchor="middle" font-size="12" fill="#94A3B8" font-family="Inter">Adversaire</text>
+      <rect x="170" y="60" width="60" height="90" rx="14" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="200" cy="45" r="22" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="200" y="180" text-anchor="middle" font-size="12" fill="#9A9A9C" font-family="Inter">Adversaire</text>
       <!-- Pratiquant (sur le dos) -->
-      <rect x="60" y="150" width="100" height="30" rx="10" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="55" cy="165" r="20" fill="#F03A3A" opacity="0.85"/>
+      <rect x="60" y="150" width="100" height="30" rx="10" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="55" cy="165" r="20" fill="#C81E3A" opacity="0.85"/>
       <!-- Jambes en garde -->
-      <path d="M160 165 C 200 100, 240 100, 232 60" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
-      <path d="M160 175 C 210 150, 240 130, 215 70" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M160 165 C 200 100, 240 100, 232 60" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M160 175 C 210 150, 240 130, 215 70" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
       <!-- Verrouillage chevilles -->
-      <circle cx="225" cy="65" r="8" fill="#F5A623"/>
-      <text x="55" y="200" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
-      <text x="225" y="40" text-anchor="middle" font-size="11" fill="#F5A623" font-family="Inter">Verrouillage</text>
+      <circle cx="225" cy="65" r="8" fill="#BE9B4E"/>
+      <text x="55" y="200" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="225" y="40" text-anchor="middle" font-size="11" fill="#BE9B4E" font-family="Inter">Verrouillage</text>
     </svg>
   `,
   armbar: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire allongé sur le dos -->
-      <rect x="80" y="150" width="220" height="26" rx="12" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="310" cy="163" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="80" y="150" width="220" height="26" rx="12" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="310" cy="163" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Bras adverse tendu vers le pratiquant -->
-      <rect x="130" y="120" width="100" height="14" rx="7" fill="#94A3B8" transform="rotate(-8 130 120)"/>
+      <rect x="130" y="120" width="100" height="14" rx="7" fill="#9A9A9C" transform="rotate(-8 130 120)"/>
       <!-- Pratiquant : hanches relevées, jambes serrées sur le bras -->
-      <circle cx="120" cy="80" r="20" fill="#F03A3A" opacity="0.85"/>
-      <rect x="70" y="95" width="80" height="26" rx="12" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="120" cy="80" r="20" fill="#C81E3A" opacity="0.85"/>
+      <rect x="70" y="95" width="80" height="26" rx="12" fill="#C81E3A" opacity="0.85"/>
       <!-- Jambes formant le verrou autour du bras -->
-      <path d="M150 105 C 180 85, 210 80, 235 100" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
-      <path d="M150 115 C 190 130, 220 125, 245 110" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M150 105 C 180 85, 210 80, 235 100" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M150 115 C 190 130, 220 125, 245 110" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
       <!-- Flèches de pression -->
-      <path d="M70 90 L 70 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrow)"/>
-      <path d="M235 100 L 255 85" stroke="#F5A623" stroke-width="3" marker-end="url(#arrow)"/>
+      <path d="M70 90 L 70 60" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrow)"/>
+      <path d="M235 100 L 255 85" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrow)"/>
       <defs>
         <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="120" y="55" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Hanches montent</text>
-      <text x="255" y="78" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Coude bloqué</text>
-      <text x="120" y="200" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="120" y="55" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Hanches montent</text>
+      <text x="255" y="78" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Coude bloqué</text>
+      <text x="120" y="200" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   triangle: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Pratiquant sur le dos -->
-      <rect x="60" y="140" width="110" height="26" rx="12" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="55" cy="153" r="18" fill="#F03A3A" opacity="0.85"/>
+      <rect x="60" y="140" width="110" height="26" rx="12" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="55" cy="153" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Adversaire penché en avant, tête piégée -->
-      <circle cx="250" cy="110" r="22" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <rect x="220" y="125" width="70" height="22" rx="10" fill="#2C2C42" stroke="#475569" stroke-width="2" transform="rotate(15 220 125)"/>
+      <circle cx="250" cy="110" r="22" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <rect x="220" y="125" width="70" height="22" rx="10" fill="#1E1E20" stroke="#545456" stroke-width="2" transform="rotate(15 220 125)"/>
       <!-- Bras adverse piégé -->
-      <rect x="200" y="100" width="60" height="12" rx="6" fill="#94A3B8" transform="rotate(20 200 100)"/>
+      <rect x="200" y="100" width="60" height="12" rx="6" fill="#9A9A9C" transform="rotate(20 200 100)"/>
       <!-- Jambes formant le triangle autour du cou/bras -->
-      <path d="M170 150 C 200 90, 240 70, 270 95" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
-      <path d="M170 160 C 220 160, 270 140, 280 100" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M170 150 C 200 90, 240 70, 270 95" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M170 160 C 220 160, 270 140, 280 100" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
       <!-- Triangle shape highlight -->
-      <path d="M225 95 L 270 95 L 248 130 Z" fill="none" stroke="#F5A623" stroke-width="2" stroke-dasharray="4 4"/>
-      <text x="248" y="65" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Triangle (jambes)</text>
-      <text x="55" y="195" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <path d="M225 95 L 270 95 L 248 130 Z" fill="none" stroke="#BE9B4E" stroke-width="2" stroke-dasharray="4 4"/>
+      <text x="248" y="65" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Triangle (jambes)</text>
+      <text x="55" y="195" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   ciseaux: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire assis/genoux -->
-      <rect x="220" y="80" width="55" height="85" rx="14" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="247" cy="65" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="220" y="80" width="55" height="85" rx="14" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="247" cy="65" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Pratiquant sur le côté -->
-      <ellipse cx="110" cy="145" rx="55" ry="22" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="60" cy="135" r="18" fill="#F03A3A" opacity="0.85"/>
+      <ellipse cx="110" cy="145" rx="55" ry="22" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="60" cy="135" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Jambe 1 : pied au sol poussant -->
-      <path d="M160 150 L 220 160" stroke="#F03A3A" stroke-width="12" stroke-linecap="round"/>
-      <circle cx="222" cy="161" r="6" fill="#F5A623"/>
+      <path d="M160 150 L 220 160" stroke="#C81E3A" stroke-width="12" stroke-linecap="round"/>
+      <circle cx="222" cy="161" r="6" fill="#BE9B4E"/>
       <!-- Jambe 2 : tirant dans le dos -->
-      <path d="M150 130 C 200 110, 240 110, 250 90" stroke="#F03A3A" stroke-width="12" stroke-linecap="round" opacity="0.7"/>
+      <path d="M150 130 C 200 110, 240 110, 250 90" stroke="#C81E3A" stroke-width="12" stroke-linecap="round" opacity="0.7"/>
       <!-- Flèches mouvement de ciseaux -->
-      <path d="M222 161 L 250 170" stroke="#F5A623" stroke-width="3" marker-end="url(#arrow2)"/>
-      <path d="M250 90 L 220 75" stroke="#F5A623" stroke-width="3" marker-end="url(#arrow2)"/>
+      <path d="M222 161 L 250 170" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrow2)"/>
+      <path d="M250 90 L 220 75" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrow2)"/>
       <defs>
         <marker id="arrow2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="250" y="195" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Mouvement ciseaux</text>
-      <text x="60" y="190" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="250" y="195" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Mouvement ciseaux</text>
+      <text x="60" y="190" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   kimura: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire au sol, bras posté -->
-      <rect x="120" y="140" width="180" height="26" rx="12" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="305" cy="153" r="18" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <rect x="170" y="115" width="80" height="12" rx="6" fill="#94A3B8" transform="rotate(-20 170 115)"/>
+      <rect x="120" y="140" width="180" height="26" rx="12" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="305" cy="153" r="18" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <rect x="170" y="115" width="80" height="12" rx="6" fill="#9A9A9C" transform="rotate(-20 170 115)"/>
       <!-- Pratiquant en haut, figure-4 sur le bras -->
-      <circle cx="140" cy="90" r="18" fill="#F03A3A" opacity="0.85"/>
-      <rect x="120" y="100" width="60" height="22" rx="10" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="140" cy="90" r="18" fill="#C81E3A" opacity="0.85"/>
+      <rect x="120" y="100" width="60" height="22" rx="10" fill="#C81E3A" opacity="0.85"/>
       <!-- Figure-4 grip -->
-      <path d="M170 110 C 195 100, 215 95, 235 105" stroke="#F03A3A" stroke-width="9" fill="none" stroke-linecap="round"/>
-      <path d="M170 100 C 200 90, 220 100, 240 120" stroke="#F03A3A" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M170 110 C 195 100, 215 95, 235 105" stroke="#C81E3A" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M170 100 C 200 90, 220 100, 240 120" stroke="#C81E3A" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.6"/>
       <!-- Flèche rotation -->
-      <path d="M240 120 A 30 30 0 0 1 200 145" stroke="#F5A623" stroke-width="3" fill="none" marker-end="url(#arrow3)"/>
+      <path d="M240 120 A 30 30 0 0 1 200 145" stroke="#BE9B4E" stroke-width="3" fill="none" marker-end="url(#arrow3)"/>
       <defs>
         <marker id="arrow3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="200" y="170" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Rotation épaule (figure-4)</text>
-      <text x="140" y="65" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="200" y="170" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Rotation épaule (figure-4)</text>
+      <text x="140" y="65" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   americana: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire au sol -->
-      <rect x="100" y="140" width="200" height="26" rx="12" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="310" cy="153" r="18" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="100" y="140" width="200" height="26" rx="12" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="310" cy="153" r="18" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Bras adverse au sol, coude à 90° -->
-      <path d="M260 150 L 230 150 L 230 110" stroke="#94A3B8" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <path d="M260 150 L 230 150 L 230 110" stroke="#9A9A9C" stroke-width="12" fill="none" stroke-linecap="round"/>
       <!-- Pratiquant en mount, figure-4 -->
-      <circle cx="170" cy="85" r="18" fill="#F03A3A" opacity="0.85"/>
-      <rect x="150" y="95" width="70" height="24" rx="10" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="170" cy="85" r="18" fill="#C81E3A" opacity="0.85"/>
+      <rect x="150" y="95" width="70" height="24" rx="10" fill="#C81E3A" opacity="0.85"/>
       <!-- Figure-4 sur poignet -->
-      <path d="M220 110 C 230 95, 245 90, 250 100" stroke="#F03A3A" stroke-width="9" fill="none" stroke-linecap="round"/>
-      <path d="M210 100 C 230 80, 250 85, 250 100" stroke="#F03A3A" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M220 110 C 230 95, 245 90, 250 100" stroke="#C81E3A" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M210 100 C 230 80, 250 85, 250 100" stroke="#C81E3A" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.6"/>
       <!-- Flèche glissement vers le bas en arc -->
-      <path d="M230 110 A 25 25 0 0 0 255 150" stroke="#F5A623" stroke-width="3" fill="none" marker-end="url(#arrow4)"/>
+      <path d="M230 110 A 25 25 0 0 0 255 150" stroke="#BE9B4E" stroke-width="3" fill="none" marker-end="url(#arrow4)"/>
       <defs>
         <marker id="arrow4" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="270" y="170" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Poignet glisse vers les pieds</text>
-      <text x="170" y="60" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi (mount)</text>
+      <text x="270" y="170" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Poignet glisse vers les pieds</text>
+      <text x="170" y="60" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi (mount)</text>
     </svg>
   `,
   rnc: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire assis, dos exposé -->
-      <rect x="150" y="90" width="90" height="80" rx="16" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="195" cy="70" r="22" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="150" y="90" width="90" height="80" rx="16" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="195" cy="70" r="22" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Pratiquant derrière, bras autour du cou -->
-      <ellipse cx="280" cy="130" rx="60" ry="35" fill="#F03A3A" opacity="0.85"/>
+      <ellipse cx="280" cy="130" rx="60" ry="35" fill="#C81E3A" opacity="0.85"/>
       <!-- Bras formant le triangle d'étranglement -->
-      <path d="M225 95 C 200 80, 175 85, 175 105" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round"/>
-      <path d="M225 110 C 200 130, 175 120, 175 105" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M225 95 C 200 80, 175 85, 175 105" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M225 110 C 200 130, 175 120, 175 105" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.7"/>
       <!-- Flèche compression -->
-      <path d="M195 75 L 200 100" stroke="#F5A623" stroke-width="3" marker-end="url(#arrow5)"/>
+      <path d="M195 75 L 200 100" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrow5)"/>
       <defs>
         <marker id="arrow5" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="195" y="50" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Compression carotides</text>
-      <text x="280" y="180" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi (dos contrôlé)</text>
+      <text x="195" y="50" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Compression carotides</text>
+      <text x="280" y="180" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi (dos contrôlé)</text>
     </svg>
   `,
   half_guard: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire au-dessus -->
-      <rect x="150" y="60" width="120" height="60" rx="16" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="270" cy="50" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="150" y="60" width="120" height="60" rx="16" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="270" cy="50" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Pratiquant sur le côté, une jambe piégée -->
-      <ellipse cx="130" cy="155" rx="80" ry="28" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="65" cy="145" r="18" fill="#F03A3A" opacity="0.85"/>
+      <ellipse cx="130" cy="155" rx="80" ry="28" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="65" cy="145" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Jambe piégée -->
-      <path d="M150 165 C 180 150, 200 130, 195 110" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M150 165 C 180 150, 200 130, 195 110" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round"/>
       <!-- Crochet de l'autre jambe sur la hanche adverse -->
-      <path d="M160 150 C 200 170, 230 165, 250 130" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M160 150 C 200 170, 230 165, 250 130" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.7"/>
       <!-- Underhook -->
-      <path d="M155 130 C 175 110, 190 95, 200 80" stroke="#F5A623" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <text x="200" y="65" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Underhook</text>
-      <text x="250" y="115" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Crochet de jambe</text>
-      <text x="65" y="190" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <path d="M155 130 C 175 110, 190 95, 200 80" stroke="#BE9B4E" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <text x="200" y="65" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Underhook</text>
+      <text x="250" y="115" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Crochet de jambe</text>
+      <text x="65" y="190" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   mount_escape: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Pratiquant au sol -->
-      <rect x="80" y="140" width="220" height="28" rx="14" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="320" cy="154" r="18" fill="#F03A3A" opacity="0.85"/>
+      <rect x="80" y="140" width="220" height="28" rx="14" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="320" cy="154" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Adversaire assis sur le buste -->
-      <ellipse cx="200" cy="115" rx="55" ry="35" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="200" cy="75" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <ellipse cx="200" cy="115" rx="55" ry="35" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="200" cy="75" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Coudes serrés -->
-      <path d="M180 140 L 165 120" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/>
-      <path d="M220 140 L 235 120" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/>
+      <path d="M180 140 L 165 120" stroke="#BE9B4E" stroke-width="5" stroke-linecap="round"/>
+      <path d="M220 140 L 235 120" stroke="#BE9B4E" stroke-width="5" stroke-linecap="round"/>
       <!-- Flèche pont (bridge) -->
-      <path d="M250 150 A 50 30 0 0 0 320 130" stroke="#F5A623" stroke-width="3" fill="none" marker-end="url(#arrow6)" stroke-dasharray="4 4"/>
+      <path d="M250 150 A 50 30 0 0 0 320 130" stroke="#BE9B4E" stroke-width="3" fill="none" marker-end="url(#arrow6)" stroke-dasharray="4 4"/>
       <defs>
         <marker id="arrow6" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="200" y="50" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Coudes collés</text>
-      <text x="300" y="115" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Pont (bridge)</text>
-      <text x="60" y="190" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="200" y="50" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Coudes collés</text>
+      <text x="300" y="115" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Pont (bridge)</text>
+      <text x="60" y="190" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   side_escape: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Pratiquant au sol -->
-      <rect x="80" y="140" width="220" height="28" rx="14" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="320" cy="154" r="18" fill="#F03A3A" opacity="0.85"/>
+      <rect x="80" y="140" width="220" height="28" rx="14" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="320" cy="154" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Adversaire en side control -->
-      <rect x="120" y="90" width="120" height="55" rx="16" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="120" cy="115" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="120" y="90" width="120" height="55" rx="16" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="120" cy="115" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Frame -->
-      <path d="M170 138 L 190 105" stroke="#F5A623" stroke-width="6" stroke-linecap="round"/>
+      <path d="M170 138 L 190 105" stroke="#BE9B4E" stroke-width="6" stroke-linecap="round"/>
       <!-- Genou inséré -->
-      <path d="M210 165 C 230 150, 245 140, 250 120" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M210 165 C 230 150, 245 140, 250 120" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.7"/>
       <!-- Flèche hip escape -->
-      <path d="M280 160 L 250 175" stroke="#F5A623" stroke-width="3" marker-end="url(#arrow7)"/>
+      <path d="M280 160 L 250 175" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrow7)"/>
       <defs>
         <marker id="arrow7" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="190" y="85" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Frame</text>
-      <text x="270" y="195" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Hip escape + genou inséré</text>
-      <text x="60" y="190" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="190" y="85" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Frame</text>
+      <text x="270" y="195" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Hip escape + genou inséré</text>
+      <text x="60" y="190" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   pendulum: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire à genoux, une main au sol -->
-      <rect x="220" y="80" width="55" height="85" rx="14" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="247" cy="65" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <path d="M230 130 L 200 165" stroke="#94A3B8" stroke-width="10" stroke-linecap="round"/>
+      <rect x="220" y="80" width="55" height="85" rx="14" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="247" cy="65" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <path d="M230 130 L 200 165" stroke="#9A9A9C" stroke-width="10" stroke-linecap="round"/>
       <!-- Pratiquant sur le dos -->
-      <ellipse cx="110" cy="150" rx="55" ry="22" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="60" cy="140" r="18" fill="#F03A3A" opacity="0.85"/>
+      <ellipse cx="110" cy="150" rx="55" ry="22" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="60" cy="140" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Jambe accrochant la jambe adverse -->
-      <path d="M155 155 C 180 150, 200 145, 200 165" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M155 155 C 180 150, 200 145, 200 165" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round"/>
       <!-- Jambe en mouvement de pendule (double position fantôme) -->
-      <path d="M150 135 C 190 100, 230 90, 245 75" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.4" stroke-dasharray="3 5"/>
-      <path d="M150 145 C 195 130, 225 120, 240 100" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.85"/>
+      <path d="M150 135 C 190 100, 230 90, 245 75" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.4" stroke-dasharray="3 5"/>
+      <path d="M150 145 C 195 130, 225 120, 240 100" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.85"/>
       <!-- Flèche balancement -->
-      <path d="M200 95 A 40 40 0 0 1 240 130" stroke="#F5A623" stroke-width="3" fill="none" marker-end="url(#arrow8)" stroke-dasharray="4 4"/>
+      <path d="M200 95 A 40 40 0 0 1 240 130" stroke="#BE9B4E" stroke-width="3" fill="none" marker-end="url(#arrow8)" stroke-dasharray="4 4"/>
       <defs>
         <marker id="arrow8" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="240" y="160" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Mouvement de pendule</text>
-      <text x="60" y="190" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="240" y="160" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Mouvement de pendule</text>
+      <text x="60" y="190" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   omoplata: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire penché en avant -->
-      <rect x="190" y="110" width="90" height="24" rx="10" fill="#2C2C42" stroke="#475569" stroke-width="2" transform="rotate(10 190 110)"/>
-      <circle cx="285" cy="130" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="190" y="110" width="90" height="24" rx="10" fill="#1E1E20" stroke="#545456" stroke-width="2" transform="rotate(10 190 110)"/>
+      <circle cx="285" cy="130" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Bras adverse piégé -->
-      <rect x="190" y="90" width="60" height="12" rx="6" fill="#94A3B8" transform="rotate(-15 190 90)"/>
+      <rect x="190" y="90" width="60" height="12" rx="6" fill="#9A9A9C" transform="rotate(-15 190 90)"/>
       <!-- Pratiquant assis, jambe sur l'épaule -->
-      <ellipse cx="110" cy="160" rx="55" ry="22" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="65" cy="150" r="18" fill="#F03A3A" opacity="0.85"/>
+      <ellipse cx="110" cy="160" rx="55" ry="22" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="65" cy="150" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Jambe formant le levier sur l'épaule -->
-      <path d="M150 160 C 190 150, 230 120, 265 110" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round"/>
-      <path d="M150 170 C 200 175, 240 165, 260 140" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M150 160 C 190 150, 230 120, 265 110" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M150 170 C 200 175, 240 165, 260 140" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.6"/>
       <!-- Flèche rotation épaule -->
-      <path d="M265 110 A 25 25 0 0 1 280 145" stroke="#F5A623" stroke-width="3" fill="none" marker-end="url(#arrow9)"/>
+      <path d="M265 110 A 25 25 0 0 1 280 145" stroke="#BE9B4E" stroke-width="3" fill="none" marker-end="url(#arrow9)"/>
       <defs>
         <marker id="arrow9" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="280" y="170" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Levier sur l'épaule</text>
-      <text x="65" y="195" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="280" y="170" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Levier sur l'épaule</text>
+      <text x="65" y="195" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   garde_papillon: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire à genoux face au pratiquant -->
-      <rect x="235" y="90" width="55" height="90" rx="14" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="262" cy="75" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="235" y="90" width="55" height="90" rx="14" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="262" cy="75" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Pratiquant assis, buste droit -->
-      <rect x="90" y="110" width="65" height="55" rx="16" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="120" cy="95" r="19" fill="#F03A3A" opacity="0.85"/>
+      <rect x="90" y="110" width="65" height="55" rx="16" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="120" cy="95" r="19" fill="#C81E3A" opacity="0.85"/>
       <!-- Deux crochets sous les cuisses adverses -->
-      <path d="M150 150 C 190 155, 220 150, 240 160" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
-      <path d="M150 160 C 195 175, 225 175, 245 175" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
-      <circle cx="240" cy="160" r="7" fill="#F5A623"/>
-      <circle cx="245" cy="175" r="7" fill="#F5A623"/>
-      <text x="245" y="200" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Crochets actifs</text>
-      <text x="120" y="190" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <path d="M150 150 C 190 155, 220 150, 240 160" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M150 160 C 195 175, 225 175, 245 175" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <circle cx="240" cy="160" r="7" fill="#BE9B4E"/>
+      <circle cx="245" cy="175" r="7" fill="#BE9B4E"/>
+      <text x="245" y="200" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Crochets actifs</text>
+      <text x="120" y="190" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   balayage_papillon: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire basculé en l'air -->
-      <rect x="230" y="70" width="70" height="26" rx="12" fill="#2C2C42" stroke="#475569" stroke-width="2" transform="rotate(-25 230 70)"/>
-      <circle cx="292" cy="55" r="18" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="230" y="70" width="70" height="26" rx="12" fill="#1E1E20" stroke="#545456" stroke-width="2" transform="rotate(-25 230 70)"/>
+      <circle cx="292" cy="55" r="18" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Pratiquant basculant sur le côté -->
-      <ellipse cx="110" cy="150" rx="55" ry="20" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="65" cy="140" r="18" fill="#F03A3A" opacity="0.85"/>
+      <ellipse cx="110" cy="150" rx="55" ry="20" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="65" cy="140" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Crochet "ascenseur" soulevant -->
-      <path d="M150 150 C 195 140, 230 100, 255 80" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round"/>
-      <path d="M260 78 L 285 55" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowbp)"/>
+      <path d="M150 150 C 195 140, 230 100, 255 80" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M260 78 L 285 55" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowbp)"/>
       <defs>
         <marker id="arrowbp" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="285" y="40" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Effet ascenseur</text>
-      <text x="65" y="180" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="285" y="40" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Effet ascenseur</text>
+      <text x="65" y="180" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   prise_de_dos: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire assis de dos -->
-      <rect x="175" y="90" width="70" height="90" rx="16" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="210" cy="75" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="175" y="90" width="70" height="90" rx="16" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="210" cy="75" r="20" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Pratiquant collé dans le dos -->
-      <rect x="205" y="95" width="60" height="80" rx="16" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="235" cy="80" r="18" fill="#F03A3A" opacity="0.85"/>
+      <rect x="205" y="95" width="60" height="80" rx="16" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="235" cy="80" r="18" fill="#C81E3A" opacity="0.85"/>
       <!-- Bras seatbelt -->
-      <path d="M215 110 C 190 100, 165 105, 155 130" stroke="#F5A623" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <path d="M215 150 C 185 155, 165 145, 160 120" stroke="#F5A623" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M215 110 C 190 100, 165 105, 155 130" stroke="#BE9B4E" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M215 150 C 185 155, 165 145, 160 120" stroke="#BE9B4E" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
       <!-- Crochets de jambes -->
-      <circle cx="190" cy="170" r="7" fill="#F5A623"/>
-      <circle cx="230" cy="172" r="7" fill="#F5A623"/>
-      <text x="200" y="55" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Ceinture de sécurité</text>
-      <text x="235" y="200" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <circle cx="190" cy="170" r="7" fill="#BE9B4E"/>
+      <circle cx="230" cy="172" r="7" fill="#BE9B4E"/>
+      <text x="200" y="55" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Ceinture de sécurité</text>
+      <text x="235" y="200" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   cle_cheville: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire allongé, jambe tendue -->
-      <rect x="180" y="140" width="120" height="24" rx="12" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="310" cy="152" r="18" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <rect x="90" y="145" width="95" height="16" rx="8" fill="#94A3B8"/>
+      <rect x="180" y="140" width="120" height="24" rx="12" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="310" cy="152" r="18" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <rect x="90" y="145" width="95" height="16" rx="8" fill="#9A9A9C"/>
       <!-- Pratiquant assis, jambe adverse sous l'aisselle -->
-      <ellipse cx="110" cy="120" rx="50" ry="20" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="65" cy="110" r="18" fill="#F03A3A" opacity="0.85"/>
-      <path d="M140 130 C 170 145, 200 150, 210 150" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <ellipse cx="110" cy="120" rx="50" ry="20" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="65" cy="110" r="18" fill="#C81E3A" opacity="0.85"/>
+      <path d="M140 130 C 170 145, 200 150, 210 150" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round"/>
       <!-- Pression sur le tendon -->
-      <path d="M95 150 L 60 150" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowcc)"/>
+      <path d="M95 150 L 60 150" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowcc)"/>
       <defs>
         <marker id="arrowcc" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="80" y="175" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Pression tendon d'Achille</text>
-      <text x="65" y="150" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="80" y="175" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Pression tendon d'Achille</text>
+      <text x="65" y="150" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   cle_genou: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire, jambe piégée -->
-      <rect x="200" y="130" width="110" height="22" rx="11" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="320" cy="141" r="17" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <rect x="120" y="120" width="90" height="14" rx="7" fill="#94A3B8" transform="rotate(-10 120 120)"/>
+      <rect x="200" y="130" width="110" height="22" rx="11" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="320" cy="141" r="17" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <rect x="120" y="120" width="90" height="14" rx="7" fill="#9A9A9C" transform="rotate(-10 120 120)"/>
       <!-- Pratiquant, genou serré contre la poitrine -->
-      <ellipse cx="110" cy="150" rx="50" ry="20" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="65" cy="140" r="18" fill="#F03A3A" opacity="0.85"/>
-      <path d="M150 145 C 175 130, 190 120, 205 130" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <ellipse cx="110" cy="150" rx="50" ry="20" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="65" cy="140" r="18" fill="#C81E3A" opacity="0.85"/>
+      <path d="M150 145 C 175 130, 190 120, 205 130" stroke="#C81E3A" stroke-width="10" fill="none" stroke-linecap="round"/>
       <!-- Flèche extension -->
-      <path d="M110 130 L 110 100" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowcg)"/>
+      <path d="M110 130 L 110 100" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowcg)"/>
       <defs>
         <marker id="arrowcg" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="110" y="90" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Hanches montent</text>
-      <text x="65" y="180" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <text x="110" y="90" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Hanches montent</text>
+      <text x="65" y="180" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   saddle_411: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
       <!-- Adversaire, jambe enroulée -->
-      <rect x="190" y="130" width="115" height="22" rx="11" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <circle cx="315" cy="141" r="17" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="190" y="130" width="115" height="22" rx="11" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <circle cx="315" cy="141" r="17" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
       <!-- Pratiquant, buste droit, jambe enroulée type selle -->
-      <ellipse cx="120" cy="150" rx="50" ry="20" fill="#F03A3A" opacity="0.85"/>
-      <circle cx="80" cy="115" r="18" fill="#F03A3A" opacity="0.85"/>
-      <path d="M150 150 C 180 165, 210 165, 225 145" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round"/>
-      <path d="M150 160 C 190 180, 220 175, 235 155" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.6"/>
-      <circle cx="230" cy="150" r="7" fill="#F5A623"/>
-      <text x="230" y="185" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Talon saisi</text>
-      <text x="80" y="185" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+      <ellipse cx="120" cy="150" rx="50" ry="20" fill="#C81E3A" opacity="0.85"/>
+      <circle cx="80" cy="115" r="18" fill="#C81E3A" opacity="0.85"/>
+      <path d="M150 150 C 180 165, 210 165, 225 145" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M150 160 C 190 180, 220 175, 235 155" stroke="#C81E3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <circle cx="230" cy="150" r="7" fill="#BE9B4E"/>
+      <text x="230" y="185" text-anchor="middle" font-size="12" fill="#BE9B4E" font-family="Inter">Talon saisi</text>
+      <text x="80" y="185" text-anchor="middle" font-size="12" fill="#C81E3A" font-weight="700" font-family="Inter">Toi</text>
     </svg>
   `,
   enchainement_armbar_triangle: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
-      <circle cx="90" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">💪</text>
-      <circle cx="200" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🔺</text>
-      <circle cx="310" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🌀</text>
-      <path d="M120 60 L 172 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe1)"/>
-      <path d="M230 60 L 282 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe1)"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
+      <circle cx="90" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">💪</text>
+      <circle cx="200" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">🔺</text>
+      <circle cx="310" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">🌀</text>
+      <path d="M120 60 L 172 60" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowe1)"/>
+      <path d="M230 60 L 282 60" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowe1)"/>
       <defs>
         <marker id="arrowe1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Armbar</text>
-      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Triangle</text>
-      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Omoplata</text>
-      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#94A3B8" font-family="Inter">Chaque défense ouvre l'attaque suivante</text>
+      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">Armbar</text>
+      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">Triangle</text>
+      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">Omoplata</text>
+      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#9A9A9C" font-family="Inter">Chaque défense ouvre l'attaque suivante</text>
     </svg>
   `,
   enchainement_kimura_trap: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
-      <circle cx="90" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🔑</text>
-      <circle cx="200" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">✂️</text>
-      <circle cx="310" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🎯</text>
-      <path d="M120 60 L 172 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe2)"/>
-      <path d="M230 60 L 282 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe2)"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
+      <circle cx="90" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">🔑</text>
+      <circle cx="200" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">✂️</text>
+      <circle cx="310" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">🎯</text>
+      <path d="M120 60 L 172 60" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowe2)"/>
+      <path d="M230 60 L 282 60" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowe2)"/>
       <defs>
         <marker id="arrowe2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Kimura Grip</text>
-      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Balayage</text>
-      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Dos</text>
-      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#94A3B8" font-family="Inter">Le contrôle du bras guide chaque transition</text>
+      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">Kimura Grip</text>
+      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">Balayage</text>
+      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">Dos</text>
+      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#9A9A9C" font-family="Inter">Le contrôle du bras guide chaque transition</text>
     </svg>
   `,
   enchainement_balayage_dos: `
     <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
-      <circle cx="90" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🌊</text>
-      <circle cx="200" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🎯</text>
-      <circle cx="310" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
-      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🫁</text>
-      <path d="M120 60 L 172 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe3)"/>
-      <path d="M230 60 L 282 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe3)"/>
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#121213"/>
+      <circle cx="90" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">🌊</text>
+      <circle cx="200" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">🎯</text>
+      <circle cx="310" cy="60" r="26" fill="#1E1E20" stroke="#545456" stroke-width="2"/>
+      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#9A9A9C" font-family="Inter">🫁</text>
+      <path d="M120 60 L 172 60" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowe3)"/>
+      <path d="M230 60 L 282 60" stroke="#BE9B4E" stroke-width="3" marker-end="url(#arrowe3)"/>
       <defs>
         <marker id="arrowe3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+          <path d="M0,0 L8,4 L0,8 Z" fill="#BE9B4E"/>
         </marker>
       </defs>
-      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Balayage</text>
-      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Prise de dos</text>
-      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">RNC</text>
-      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#94A3B8" font-family="Inter">Une position dominante n'est qu'une étape</text>
+      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">Balayage</text>
+      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">Prise de dos</text>
+      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#C81E3A" font-weight="700" font-family="Inter">RNC</text>
+      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#9A9A9C" font-family="Inter">Une position dominante n'est qu'une étape</text>
     </svg>
   `
 };
@@ -2228,10 +2272,12 @@ initAuthSession();
 // Icône de l'application générée en SVG (logo JJB Academy)
 const appIconSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#0C0C12"/>
-  <circle cx="256" cy="256" r="190" fill="none" stroke="#2C2C42" stroke-width="14"/>
-  <text x="256" y="240" font-family="Bebas Neue, Arial, sans-serif" font-size="150" font-weight="700" fill="#FFFFFF" text-anchor="middle">JJB</text>
-  <text x="256" y="345" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="800" fill="#F03A3A" text-anchor="middle" letter-spacing="6">ACADEMY</text>
+  <rect width="512" height="512" rx="96" fill="#050505"/>
+  <text x="256" y="270" font-family="Anton, Arial, sans-serif" font-size="184" font-weight="400" fill="#F3F2ED" text-anchor="middle" letter-spacing="-6">JJB</text>
+  <rect x="146" y="306" width="220" height="4" fill="#BE9B4E"/>
+  <text x="256" y="350" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="#F3F2ED" text-anchor="middle" letter-spacing="10">ACADEMY</text>
+  <rect x="176" y="392" width="160" height="16" rx="2" fill="#131315" stroke="#242426" stroke-width="2"/>
+  <rect x="290" y="392" width="46" height="16" fill="#C81E3A"/>
 </svg>`;
 const appIconUrl = 'data:image/svg+xml;base64,' + btoa(appIconSvg);
 
@@ -2242,8 +2288,8 @@ const manifest = {
   description: "Apprends et drille les techniques de Jiu-Jitsu Brésilien",
   start_url: ".",
   display: "standalone",
-  background_color: "#0C0C12",
-  theme_color: "#0C0C12",
+  background_color: "#050505",
+  theme_color: "#050505",
   orientation: "portrait-primary",
   icons: [
     { src: appIconUrl, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
