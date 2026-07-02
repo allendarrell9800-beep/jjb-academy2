@@ -702,6 +702,9 @@ input, textarea { -webkit-user-select: text; user-select: text; }
             <div class="tech-filter" onclick="filterByCategory(this,'balayages')">Balayages</div>
             <div class="tech-filter" onclick="filterByCategory(this,'gardes')">Gardes & Contrôle</div>
             <div class="tech-filter" onclick="filterByCategory(this,'echappes')">Échappes</div>
+            <div class="tech-filter" onclick="filterByCategory(this,'leg_locks')">Leg Locks</div>
+            <div class="tech-filter" onclick="filterByCategory(this,'dos')">Prise de dos</div>
+            <div class="tech-filter" onclick="filterByCategory(this,'enchainements')">Enchaînements</div>
           </div>
 
           <h3 class="sec-title">Techniques disponibles</h3>
@@ -1471,6 +1474,186 @@ const techniques = {
     schema: "omoplata",
     video: "u7-yPuWtyvI",
     tips: "Erreur fréquente : laisser l'adversaire faire une roulade avant (forward roll) pour s'échapper — anticipe ce mouvement en contrôlant fermement sa hanche dès le début. Cette technique demande de la patience : la pression doit être appliquée progressivement, pas brusquement."
+  },
+  garde_papillon: {
+    name: "Garde Papillon",
+    cat: "gardes",
+    catLabel: "Garde & Contrôle",
+    icon: "🦋",
+    level: "int",
+    levelLabel: "Intermédiaire",
+    desc: "Garde assise et dynamique où tes deux pieds (crochets) sont placés à l'intérieur des cuisses de l'adversaire, idéale contre un passeur agenouillé et parfaite pour lancer des balayages.",
+    tags: ["Position assise", "Base des balayages"],
+    steps: [
+      "Assis face à l'adversaire, place tes deux pieds en crochet à l'intérieur de ses cuisses, genoux pliés et proches de son corps.",
+      "<strong>Redresse ton buste</strong> et garde une posture active : le dos droit, jamais avachi vers l'arrière.",
+      "Contrôle ses manches, son col ou ses biceps (over-under ou double manche) pour limiter ses postures et sentir ses réactions.",
+      "Utilise tes crochets pour \"lire\" son poids : si son poids part sur un pied, tu peux immédiatement lancer un balayage de ce côté.",
+      "Reste mobile en pivotant sur tes hanches pour toujours garder tes crochets actifs face à ses déplacements."
+    ],
+    schema: "garde_papillon",
+    video: "iAzE7redBNs",
+    tips: "Erreur fréquente : se pencher trop en arrière, ce qui désactive tes crochets et permet à l'adversaire de s'aplatir sur toi. Garde toujours le buste engagé vers l'avant et les hanches proches de celles de l'adversaire."
+  },
+  balayage_papillon: {
+    name: "Balayage Papillon (Elevator Sweep)",
+    cat: "balayages",
+    catLabel: "Balayage - Garde Papillon",
+    icon: "🌊",
+    level: "int",
+    levelLabel: "Intermédiaire",
+    desc: "Le balayage classique de la garde papillon : tu utilises un crochet de jambe comme un ascenseur pour soulever et renverser un adversaire dont le poids est chargé sur ce côté.",
+    tags: ["Depuis la garde papillon", "Très haut pourcentage"],
+    steps: [
+      "Depuis la garde papillon, contrôle un bras adverse en over-under (un bras dessous, un bras dessus) ou en double manche.",
+      "Sens le poids de l'adversaire se charger sur un de tes crochets — c'est le signal pour balayer de ce côté.",
+      "Bascule ton buste vers le côté opposé au crochet actif, en t'appuyant sur ton coude ou ta main au sol.",
+      "<strong>Soulève explosivement avec ton crochet</strong> (comme un ascenseur) tout en tirant avec tes bras pour faire basculer l'adversaire par-dessus son épaule.",
+      "Suis le mouvement pour atterrir en position dominante (mount ou side control) ou enchaîne directement vers une prise de dos."
+    ],
+    schema: "balayage_papillon",
+    video: "rVGdZL8MiaQ",
+    tips: "Erreur fréquente : essayer de soulever sans avoir d'abord senti le poids de l'adversaire charger sur le crochet — le timing est essentiel, la force seule ne suffit pas. Garde toujours le contrôle du buste (over-under) pour éviter que l'adversaire ne base et n'annule le balayage."
+  },
+  prise_de_dos: {
+    name: "Prise de Dos (Back Take)",
+    cat: "dos",
+    catLabel: "Contrôle du Dos",
+    icon: "🎯",
+    level: "int",
+    levelLabel: "Intermédiaire",
+    desc: "La position la plus dominante du JJB : placé derrière l'adversaire avec la ceinture de sécurité (seatbelt) et tes deux crochets de jambes, tu contrôles totalement ses mouvements et ouvres la voie à l'étranglement.",
+    tags: ["Position la plus dominante", "Mène à l'étranglement"],
+    steps: [
+      "Depuis une transition (demi-garde, garde papillon, turtle), glisse-toi derrière l'adversaire en restant collé à son dos.",
+      "Établis la <strong>ceinture de sécurité (seatbelt)</strong> : un bras passe par-dessus son épaule, l'autre sous son aisselle opposée, mains jointes sur son buste.",
+      "Insère tes deux pieds en crochets à l'intérieur de ses cuisses — évite de croiser les chevilles pour ne pas être vulnérable à une clé de pied.",
+      "Garde ta tête collée contre son omoplate, du même côté que ton bras \"sous l'aisselle\", pour empêcher qu'il ne se retourne facilement.",
+      "Reste toujours légèrement décalé sur le côté du bras \"par-dessus l'épaule\" pour ne jamais offrir ton dos et rester en sécurité en cas de renversement."
+    ],
+    schema: "prise_de_dos",
+    video: "CFDVh9EVgPA",
+    tips: "Erreur fréquente : croiser les chevilles dans le dos de l'adversaire — c'est interdit en compétition et ça expose à une clé de pied. Garde toujours au moins un crochet actif et la ceinture de sécurité verrouillée avant de chercher la soumission."
+  },
+  cle_de_cheville: {
+    name: "Clé de Cheville Droite (Straight Ankle Lock)",
+    cat: "leg_locks",
+    catLabel: "Leg Lock - Cheville",
+    icon: "🦶",
+    level: "int",
+    levelLabel: "Intermédiaire",
+    desc: "Le leg lock fondamental du JJB moderne : depuis un contrôle de jambe (ashi garami), tu appliques une pression d'extension sur la cheville en ciblant le tendon d'Achille.",
+    tags: ["Leg lock fondamental", "Depuis l'ashi garami"],
+    steps: [
+      "Installe un contrôle de jambe de base (ashi garami) : ta jambe extérieure passe par-dessus la sienne, ton pied venant se poser contre sa hanche pour bloquer sa rotation.",
+      "Serre ses genoux ensemble entre tes cuisses pour empêcher toute échappatoire en rotation.",
+      "Place son pied sous ton aisselle, talon vers l'extérieur, et <strong>positionne ton avant-bras contre son tendon d'Achille</strong> (pas sur l'os de la cheville).",
+      "Verrouille tes mains en te saisissant l'avant-bras ou le poignet opposé pour former une prise stable.",
+      "Finalise en <strong>poussant les hanches vers l'avant</strong> tout en tirant légèrement le pied vers toi, créant une extension progressive sur la cheville."
+    ],
+    schema: "cle_cheville",
+    video: "5ZAqUQpsus8",
+    tips: "Erreur fréquente : placer la pression sur l'os de la cheville plutôt que sur le tendon d'Achille, ce qui est douloureux mais inefficace. Applique toujours la pression progressivement et arrête immédiatement dès la tape — les leg locks agissent vite et sans signe avant-coureur."
+  },
+  cle_de_genou: {
+    name: "Clé de Genou (Kneebar)",
+    cat: "leg_locks",
+    catLabel: "Leg Lock - Genou",
+    icon: "🦿",
+    level: "adv",
+    levelLabel: "Avancé",
+    desc: "Clé articulaire qui hyperétend le genou de l'adversaire, souvent obtenue depuis la demi-garde inversée ou en contrant une tentative de passage de garde.",
+    tags: ["Depuis la demi-garde", "Hyperextension du genou"],
+    steps: [
+      "Piège une jambe de l'adversaire entre les tiennes, en la serrant fermement contre ta poitrine, cuisse contre cuisse.",
+      "Passe ta jambe la plus proche par-dessus sa hanche pour l'empêcher de pivoter et d'échapper au contrôle.",
+      "<strong>Place son genou juste au-dessus de tes hanches</strong> (pas sur ton ventre) et serre tes cuisses autour de sa cuisse pour verrouiller l'articulation.",
+      "Garde son pied bloqué sous ton bras ou contre ton épaule pour empêcher toute rotation défensive.",
+      "Applique une pression en <strong>poussant les hanches vers le haut</strong> tout en tirant légèrement sur la jambe, créant une hyperextension du genou."
+    ],
+    schema: "cle_genou",
+    video: "aRD4g49_Srw",
+    tips: "Erreur fréquente : laisser l'adversaire tourner sur lui-même (rolling), ce qui peut annuler le contrôle et créer un risque pour les deux pratiquants. Contrôle toujours la hanche adverse avant de finaliser la pression, et relâche dès le premier signe de tape."
+  },
+  saddle_411: {
+    name: "Saddle / 411 (Contrôle Ashi Avancé)",
+    cat: "leg_locks",
+    catLabel: "Leg Lock - Contrôle Avancé",
+    icon: "🐴",
+    level: "adv",
+    levelLabel: "Avancé",
+    desc: "Position de contrôle de jambe avancée (aussi appelée '411' ou 'inside sankaku') offrant un accès privilégié au heel hook, la soumission la plus puissante des leg locks modernes.",
+    tags: ["Contrôle de jambe avancé", "Accès au heel hook"],
+    steps: [
+      "Depuis un ashi garami, fais passer ta jambe intérieure par-dessus sa cuisse pour venir enrouler complètement sa jambe (position \"selle\").",
+      "Verrouille tes chevilles ou tes pieds ensemble derrière sa cuisse pour stabiliser le contrôle, sans exposer ton propre pied.",
+      "Garde ton buste droit et légèrement en retrait, en contrôlant sa hanche opposée avec ta main libre pour l'empêcher de pivoter vers toi.",
+      "Saisis son talon fermement à deux mains, la plante du pied orientée vers toi, en préparation de la finition.",
+      "<strong>Depuis cette position</strong>, la finition se fait par une rotation contrôlée du talon combinée à une légère flexion — technique réservée aux pratiquants expérimentés supervisés par un professeur."
+    ],
+    schema: "saddle_411",
+    video: "5ZAqUQpsus8",
+    tips: "Erreur fréquente : négliger le contrôle des hanches de l'adversaire, ce qui lui permet de pivoter et d'inverser la position. Le heel hook est un des mouvements les plus dangereux du JJB : ne le pratique qu'à faible intensité, avec un partenaire averti, et tape tôt sans attendre la douleur."
+  },
+  enchainement_armbar_triangle_omoplata: {
+    name: "Enchaînement : Armbar → Triangle → Omoplata",
+    cat: "enchainements",
+    catLabel: "Enchaînement - Depuis la Garde",
+    icon: "🔗",
+    level: "int",
+    levelLabel: "Intermédiaire",
+    desc: "Le système d'attaque le plus classique du JJB depuis la garde fermée : trois soumissions liées entre elles, où la défense de l'une ouvre automatiquement la suivante.",
+    tags: ["Chaîne de soumissions", "Depuis la garde fermée"],
+    steps: [
+      "Depuis la garde fermée, casse la posture de l'adversaire et attaque l'<strong>Armbar</strong> en isolant un bras et en passant ta jambe par-dessus sa tête.",
+      "S'il retire son bras et se redresse pour se défendre, sa tête reste souvent piégée : enchaîne immédiatement vers le <strong>Triangle</strong> en plaçant ta jambe sur son épaule opposée.",
+      "S'il pose une main au sol pour poster et défendre le triangle, ce bras posté devient la cible : capture-le entre tes jambes et ton corps.",
+      "Pivote ton buste vers l'épaule piégée pour transitionner vers l'<strong>Omoplata</strong>, ta jambe passant par-dessus son dos.",
+      "Chaque défense de l'adversaire t'ouvre la soumission suivante : la clé est de <strong>ne jamais relâcher le contrôle du buste et des hanches</strong> pendant les transitions."
+    ],
+    schema: "enchainement_armbar_triangle",
+    video: "2oVHEcyJhIM",
+    tips: "Erreur fréquente : relâcher tout contrôle en changeant d'attaque, ce qui laisse à l'adversaire le temps de se réinitialiser. Garde toujours au minimum un point de contrôle (bras, jambe ou hanche) actif pendant chaque transition de la chaîne."
+  },
+  enchainement_kimura_trap: {
+    name: "Enchaînement : Kimura Trap (Kimura → Balayage → Dos)",
+    cat: "enchainements",
+    catLabel: "Enchaînement - Kimura Trap",
+    icon: "🧩",
+    level: "adv",
+    levelLabel: "Avancé",
+    desc: "Système moderne popularisé en no-gi : au lieu de forcer la soumission Kimura immédiatement, tu utilises le contrôle du bras (Kimura grip) comme un point d'ancrage pour enchaîner balayages et prise de dos.",
+    tags: ["Popularisé en No-Gi", "Contrôle avant soumission"],
+    steps: [
+      "Obtiens le grip Kimura (figure-4) sur un bras adverse depuis la garde ou la demi-garde, sans chercher immédiatement la finition.",
+      "Si l'adversaire résiste en base solide, utilise le levier du bras piégé pour initier un <strong>balayage</strong> et passer en position dominante.",
+      "S'il se défend en tournant le dos pour échapper à la pression de l'épaule, <strong>suis son mouvement de rotation</strong> plutôt que de le combattre.",
+      "Utilise ce moment de dos exposé pour insérer tes crochets et établir la <strong>prise de dos</strong>, tout en gardant le contrôle du bras piégé.",
+      "Une fois le dos contrôlé, tu peux soit finaliser la Kimura depuis cette position, soit transitionner vers un étranglement arrière (RNC)."
+    ],
+    schema: "enchainement_kimura_trap",
+    video: "hZAn64WGMo0",
+    tips: "Erreur fréquente : forcer la finition de la Kimura trop tôt, ce qui pousse l'adversaire à mieux se défendre plutôt qu'à réagir naturellement. La patience est la clé : laisse ses propres défenses te guider vers le balayage ou la prise de dos."
+  },
+  enchainement_balayage_dos: {
+    name: "Enchaînement : Balayage Papillon → Prise de Dos → RNC",
+    cat: "enchainements",
+    catLabel: "Enchaînement - Vers la Soumission",
+    icon: "⚡",
+    level: "int",
+    levelLabel: "Intermédiaire",
+    desc: "Chaîne complète et très rentable : du balayage à la soumission, en passant par la position la plus dominante du JJB, la prise de dos.",
+    tags: ["De la garde à la soumission", "Très rentable en compétition"],
+    steps: [
+      "Depuis la garde papillon, exécute le <strong>Balayage Papillon</strong> en contrôlant un bras en over-under et en soulevant avec ton crochet.",
+      "Au lieu de t'arrêter en position montée, utilise l'élan du balayage pour continuer ta rotation par-dessus l'adversaire.",
+      "S'il se retourne instinctivement pour éviter d'être immobilisé sur le dos (turtle), profite de ce mouvement pour glisser directement vers la <strong>prise de dos</strong>.",
+      "Établis la ceinture de sécurité et tes deux crochets avant qu'il ne puisse stabiliser sa position.",
+      "Une fois le dos solidement contrôlé, termine par un <strong>Étranglement Arrière (RNC)</strong> en insérant ton bras autour du cou dès qu'il expose un angle."
+    ],
+    schema: "enchainement_balayage_dos",
+    video: "l8-JI7NND3E",
+    tips: "Erreur fréquente : célébrer trop tôt après le balayage et laisser l'adversaire se stabiliser en position défensive. Enchaîne toujours immédiatement vers la position suivante : en JJB, une position dominante n'est qu'une étape vers la soumission, pas une fin en soi."
   }
 };
 
@@ -1802,6 +1985,190 @@ const schemas = {
       </defs>
       <text x="280" y="170" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Levier sur l'épaule</text>
       <text x="65" y="195" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+    </svg>
+  `,
+  garde_papillon: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <!-- Adversaire à genoux face au pratiquant -->
+      <rect x="235" y="90" width="55" height="90" rx="14" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <circle cx="262" cy="75" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <!-- Pratiquant assis, buste droit -->
+      <rect x="90" y="110" width="65" height="55" rx="16" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="120" cy="95" r="19" fill="#F03A3A" opacity="0.85"/>
+      <!-- Deux crochets sous les cuisses adverses -->
+      <path d="M150 150 C 190 155, 220 150, 240 160" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M150 160 C 195 175, 225 175, 245 175" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <circle cx="240" cy="160" r="7" fill="#F5A623"/>
+      <circle cx="245" cy="175" r="7" fill="#F5A623"/>
+      <text x="245" y="200" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Crochets actifs</text>
+      <text x="120" y="190" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+    </svg>
+  `,
+  balayage_papillon: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <!-- Adversaire basculé en l'air -->
+      <rect x="230" y="70" width="70" height="26" rx="12" fill="#2C2C42" stroke="#475569" stroke-width="2" transform="rotate(-25 230 70)"/>
+      <circle cx="292" cy="55" r="18" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <!-- Pratiquant basculant sur le côté -->
+      <ellipse cx="110" cy="150" rx="55" ry="20" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="65" cy="140" r="18" fill="#F03A3A" opacity="0.85"/>
+      <!-- Crochet "ascenseur" soulevant -->
+      <path d="M150 150 C 195 140, 230 100, 255 80" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M260 78 L 285 55" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowbp)"/>
+      <defs>
+        <marker id="arrowbp" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+        </marker>
+      </defs>
+      <text x="285" y="40" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Effet ascenseur</text>
+      <text x="65" y="180" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+    </svg>
+  `,
+  prise_de_dos: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <!-- Adversaire assis de dos -->
+      <rect x="175" y="90" width="70" height="90" rx="16" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <circle cx="210" cy="75" r="20" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <!-- Pratiquant collé dans le dos -->
+      <rect x="205" y="95" width="60" height="80" rx="16" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="235" cy="80" r="18" fill="#F03A3A" opacity="0.85"/>
+      <!-- Bras seatbelt -->
+      <path d="M215 110 C 190 100, 165 105, 155 130" stroke="#F5A623" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M215 150 C 185 155, 165 145, 160 120" stroke="#F5A623" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <!-- Crochets de jambes -->
+      <circle cx="190" cy="170" r="7" fill="#F5A623"/>
+      <circle cx="230" cy="172" r="7" fill="#F5A623"/>
+      <text x="200" y="55" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Ceinture de sécurité</text>
+      <text x="235" y="200" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+    </svg>
+  `,
+  cle_cheville: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <!-- Adversaire allongé, jambe tendue -->
+      <rect x="180" y="140" width="120" height="24" rx="12" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <circle cx="310" cy="152" r="18" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="90" y="145" width="95" height="16" rx="8" fill="#94A3B8"/>
+      <!-- Pratiquant assis, jambe adverse sous l'aisselle -->
+      <ellipse cx="110" cy="120" rx="50" ry="20" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="65" cy="110" r="18" fill="#F03A3A" opacity="0.85"/>
+      <path d="M140 130 C 170 145, 200 150, 210 150" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <!-- Pression sur le tendon -->
+      <path d="M95 150 L 60 150" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowcc)"/>
+      <defs>
+        <marker id="arrowcc" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+        </marker>
+      </defs>
+      <text x="80" y="175" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Pression tendon d'Achille</text>
+      <text x="65" y="150" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+    </svg>
+  `,
+  cle_genou: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <!-- Adversaire, jambe piégée -->
+      <rect x="200" y="130" width="110" height="22" rx="11" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <circle cx="320" cy="141" r="17" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <rect x="120" y="120" width="90" height="14" rx="7" fill="#94A3B8" transform="rotate(-10 120 120)"/>
+      <!-- Pratiquant, genou serré contre la poitrine -->
+      <ellipse cx="110" cy="150" rx="50" ry="20" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="65" cy="140" r="18" fill="#F03A3A" opacity="0.85"/>
+      <path d="M150 145 C 175 130, 190 120, 205 130" stroke="#F03A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <!-- Flèche extension -->
+      <path d="M110 130 L 110 100" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowcg)"/>
+      <defs>
+        <marker id="arrowcg" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+        </marker>
+      </defs>
+      <text x="110" y="90" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Hanches montent</text>
+      <text x="65" y="180" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+    </svg>
+  `,
+  saddle_411: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <!-- Adversaire, jambe enroulée -->
+      <rect x="190" y="130" width="115" height="22" rx="11" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <circle cx="315" cy="141" r="17" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <!-- Pratiquant, buste droit, jambe enroulée type selle -->
+      <ellipse cx="120" cy="150" rx="50" ry="20" fill="#F03A3A" opacity="0.85"/>
+      <circle cx="80" cy="115" r="18" fill="#F03A3A" opacity="0.85"/>
+      <path d="M150 150 C 180 165, 210 165, 225 145" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M150 160 C 190 180, 220 175, 235 155" stroke="#F03A3A" stroke-width="11" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <circle cx="230" cy="150" r="7" fill="#F5A623"/>
+      <text x="230" y="185" text-anchor="middle" font-size="12" fill="#F5A623" font-family="Inter">Talon saisi</text>
+      <text x="80" y="185" text-anchor="middle" font-size="12" fill="#F03A3A" font-weight="700" font-family="Inter">Toi</text>
+    </svg>
+  `,
+  enchainement_armbar_triangle: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <circle cx="90" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">💪</text>
+      <circle cx="200" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🔺</text>
+      <circle cx="310" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🌀</text>
+      <path d="M120 60 L 172 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe1)"/>
+      <path d="M230 60 L 282 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe1)"/>
+      <defs>
+        <marker id="arrowe1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+        </marker>
+      </defs>
+      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Armbar</text>
+      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Triangle</text>
+      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Omoplata</text>
+      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#94A3B8" font-family="Inter">Chaque défense ouvre l'attaque suivante</text>
+    </svg>
+  `,
+  enchainement_kimura_trap: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <circle cx="90" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🔑</text>
+      <circle cx="200" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">✂️</text>
+      <circle cx="310" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🎯</text>
+      <path d="M120 60 L 172 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe2)"/>
+      <path d="M230 60 L 282 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe2)"/>
+      <defs>
+        <marker id="arrowe2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+        </marker>
+      </defs>
+      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Kimura Grip</text>
+      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Balayage</text>
+      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Dos</text>
+      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#94A3B8" font-family="Inter">Le contrôle du bras guide chaque transition</text>
+    </svg>
+  `,
+  enchainement_balayage_dos: `
+    <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="195" rx="180" ry="12" fill="#1C1C2A"/>
+      <circle cx="90" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="90" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🌊</text>
+      <circle cx="200" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="200" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🎯</text>
+      <circle cx="310" cy="60" r="26" fill="#2C2C42" stroke="#475569" stroke-width="2"/>
+      <text x="310" y="66" text-anchor="middle" font-size="14" fill="#94A3B8" font-family="Inter">🫁</text>
+      <path d="M120 60 L 172 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe3)"/>
+      <path d="M230 60 L 282 60" stroke="#F5A623" stroke-width="3" marker-end="url(#arrowe3)"/>
+      <defs>
+        <marker id="arrowe3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#F5A623"/>
+        </marker>
+      </defs>
+      <text x="90" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Balayage</text>
+      <text x="200" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">Prise de dos</text>
+      <text x="310" y="105" text-anchor="middle" font-size="11" fill="#F03A3A" font-weight="700" font-family="Inter">RNC</text>
+      <text x="200" y="150" text-anchor="middle" font-size="12" fill="#94A3B8" font-family="Inter">Une position dominante n'est qu'une étape</text>
     </svg>
   `
 };
