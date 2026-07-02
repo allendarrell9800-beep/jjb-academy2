@@ -153,13 +153,13 @@ h1, h2, h3, h4, h5, h6 { font-weight: 400; }
   padding: var(--sp-4); font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); width: 100%;
 }
 .btn-outline:hover { border-color: var(--text-2); color: #fff; background: var(--surface); }
-.btn-row { display: flex; flex-direction: column; gap: var(--sp-3); margin-top: auto; }
+.btn-row { display: flex; flex-direction: column; gap: var(--sp-3); margin-top: var(--sp-6); }
 
 /* ═══════════════════════════════════════════
    NOUVEL ÉCRAN : INTERFACE DE CONNEXION / ONBOARDING
 ═══════════════════════════════════════════ */
-#onboarding { flex-direction: column; min-height: 100vh; align-items: center; justify-content: flex-start; }
-.ob-topbar { width: 100%; max-width: 500px; padding: var(--sp-6); display: flex; align-items: center; justify-content: space-between; }
+#onboarding { flex-direction: column; min-height: 100vh; align-items: center; justify-content: center; padding: var(--sp-6); }
+.ob-topbar { width: 100%; max-width: 460px; padding: 0 0 var(--sp-6) 0; display: flex; align-items: center; justify-content: space-between; }
 .ob-logo { font-family: var(--font-d); font-weight: 400; font-size: 26px; letter-spacing: -.5px; color: #fff; display: flex; align-items: baseline; gap: 8px; }
 .ob-logo-dot { font-family: var(--font-b); font-weight: 700; font-size: 11px; letter-spacing: 3px; color: var(--text-2); }
 .ob-progress { display: flex; align-items: center; gap: var(--sp-2); }
@@ -167,10 +167,37 @@ h1, h2, h3, h4, h5, h6 { font-weight: 400; }
 .ob-dot.done { background: var(--red); }
 .ob-dot.current { background: var(--red); width: 18px; border-radius: 4px; box-shadow: 0 0 8px var(--red-glow); }
 
-.ob-body { flex: 1; width: 100%; max-width: 500px; padding: 0 var(--sp-6) var(--sp-10); display: flex; flex-direction: column; }
+.ob-body { width: 100%; max-width: 460px; }
+
+/* La box card qui contient chaque step */
+.ob-step-content {
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.03) inset,
+    0 4px 6px rgba(0,0,0,.3),
+    0 16px 40px rgba(0,0,0,.55),
+    0 32px 80px rgba(0,0,0,.35);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ligne d'accent rouge en haut de la box */
+.ob-step-content::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--red);
+  border-radius: 2px;
+  margin-bottom: var(--sp-6);
+  box-shadow: 0 0 12px var(--red-glow);
+}
 .step-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: var(--sp-3); }
-.step-title { font-family: var(--font-d); font-size: clamp(32px, 8vw, 42px); line-height: 1; letter-spacing: .5px; margin-bottom: var(--sp-3); text-transform: uppercase; }
-.step-sub { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: var(--sp-8); }
+.step-title { font-family: var(--font-d); font-size: clamp(28px, 7vw, 36px); line-height: 1; letter-spacing: .5px; margin-bottom: var(--sp-3); text-transform: uppercase; }
+.step-sub { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: var(--sp-6); }
 
 /* Form Saisies */
 .form-group { margin-bottom: var(--sp-5); }
@@ -511,6 +538,8 @@ h1, h2, h3, h4, h5, h6 { font-weight: 400; }
 /* Empêche le zoom indésirable des inputs sur iOS */
 @media (max-width: 640px) {
   .form-input, .form-label, .form-group input { font-size: 16px; }
+  #onboarding { padding: var(--sp-4); justify-content: flex-start; padding-top: var(--sp-8); }
+  .ob-step-content { padding: var(--sp-6); }
 }
 </style>
 </head>
