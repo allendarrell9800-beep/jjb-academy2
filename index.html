@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#050505">
+<meta name="theme-color" content="#0E0E10">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="JJB Academy">
 <link rel="manifest" id="manifestLink">
-<link rel="apple-touch-icon" id="appleTouchIcon">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/allendarrell9800-beep/jjb-academy2/main/Logo3.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/allendarrell9800-beep/jjb-academy2/main/Logo3.png">
 <title>JJB Academy – Apprends le Jiu-Jitsu Brésilien</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
@@ -139,16 +140,12 @@ h1, h2, h3, h4, h5, h6 { font-weight: 400; }
   text-align: center; padding: var(--sp-10) var(--sp-6);
 }
 .brand-lockup { display: flex; flex-direction: column; align-items: center; margin-bottom: var(--sp-8); }
-.brand-mark {
-  font-family: var(--font-d); font-weight: 400; font-size: clamp(64px, 20vw, 110px); letter-spacing: -3px;
-  line-height: .82; color: var(--text); text-transform: uppercase;
+.brand-logo {
+  width: clamp(200px, 55vw, 300px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 32px rgba(200,38,62,.25));
 }
-.brand-word {
-  font-family: var(--font-b); font-weight: 700; font-size: clamp(14px, 3.4vw, 19px);
-  letter-spacing: 9px; text-indent: 9px; color: var(--text); text-transform: uppercase; margin-top: var(--sp-2);
-}
-.brand-rule { width: 150px; max-width: 60%; height: 1px; background: var(--gold); margin: var(--sp-4) 0 var(--sp-5); }
-.brand-belt { width: 220px; max-width: 68%; height: auto; display: block; }
 .splash-tagline {
   font-size: 14px; font-weight: 500; color: var(--text-2);
   letter-spacing: 4px; text-transform: uppercase; margin-top: var(--sp-8); margin-bottom: var(--sp-10);
@@ -585,18 +582,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 400; }
   <section id="splash" class="screen active">
     <div style="margin: auto 0;">
       <div class="brand-lockup">
-        <div class="brand-mark">JJB</div>
-        <div class="brand-word">Academy</div>
-        <div class="brand-rule"></div>
-        <svg class="brand-belt" viewBox="0 0 320 62" xmlns="http://www.w3.org/2000/svg">
-          <rect x="6" y="20" width="308" height="22" rx="3" fill="#131315" stroke="#242426" stroke-width="1"/>
-          <line x1="10" y1="24" x2="310" y2="24" stroke="#242426" stroke-width="1"/>
-          <line x1="10" y1="38" x2="310" y2="38" stroke="#242426" stroke-width="1"/>
-          <rect x="138" y="12" width="44" height="38" rx="5" fill="#1A1A1C" stroke="#242426" stroke-width="1"/>
-          <rect x="252" y="20" width="46" height="22" fill="#C81E3A"/>
-          <rect x="248" y="20" width="4" height="22" fill="#F3F2ED"/>
-          <rect x="298" y="20" width="4" height="22" fill="#F3F2ED"/>
-        </svg>
+        <img src="https://raw.githubusercontent.com/allendarrell9800-beep/jjb-academy2/main/Logo3.png" alt="JJB Academy Logo" class="brand-logo">
       </div>
       <p class="splash-tagline">Apprends, drille, progresse sur le tatami</p>
     </div>
